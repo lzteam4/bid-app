@@ -5,7 +5,7 @@
       <a class='navbar-brand'>{{pageTitle}}</a>
       <ul class='nav navbar-nav'>
         <li>
-          <a [routerLink]="['/auth']">Auth</a>
+          <a [routerLink]="['/auth']">Home</a>
         </li>
         <li>
           <a [routerLink]="['/products']">Product List</a>
@@ -16,6 +16,7 @@
         <li>
           <a [routerLink]="['/profile/subscription']">Subscription</a>
         </li>
+        <li><a class="nav-item nav-link" (click)="logout()">Logout</a></li>
       </ul>
     </div>
   </nav>

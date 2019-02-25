@@ -6,4 +6,5 @@ export interface IUser {
     Name: string;
     FcmToken: string;
     CreatedTimestamp: Date;
+    Token:string;
 }

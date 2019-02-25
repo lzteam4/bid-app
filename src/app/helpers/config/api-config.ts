@@ -1,5 +1,5 @@
  export const ApiConfig = {
-     baseUrl: "https://3mmhj3xmwc.execute-api.us-east-1.amazonaws.com/Prod/",
+     baseUrl: "https://53obu0blxl.execute-api.us-east-1.amazonaws.com/Prod",
      user: "user",
      product: "product",
      bid: "bid",

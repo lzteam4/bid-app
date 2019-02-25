@@ -8,7 +8,7 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  pageTitle = 'my-app';
+  pageTitle = 'XP Bid Dash';
   constructor(private userService: UserService, 
     private firebaseCloudMessagingService: FirebaseCloudMessagingService,
     private messageService: MessageService) {

@@ -22,6 +22,9 @@ export class UserService {//extends DataService {
   constructor(private http: HttpClient) {
     // super(ApiConfig.baseUrl + ApiConfig.user, http);
   }
+  register(user: IUser) {
+    return this.http.post(ApiConfig.baseUrl + ApiConfig.user,user);
+}
 
   getUser(userId: string): Observable<IUser> {
     return this.http.get<IUser>(ApiConfig.baseUrl + ApiConfig.user + "/" + userId).pipe();
@@ -41,7 +44,16 @@ export class UserService {//extends DataService {
     this.user = user;
   }
   
+  getAll() {
+    return this.http.get<IUser[]>(`${ApiConfig.baseUrl + ApiConfig.user}/users`);
+}
+
   getCurrentUser() {
     return this.user;
   }
+
+  delete(id: number) {
+    return this.http.delete(`${ApiConfig.baseUrl + ApiConfig.user}/users/${id}`);
+}
+
 }
