@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
     sortKey: string;
     sortField: string;
     sortOrder: number;
+    
 
     constructor(private productService: ProductService) { }
 

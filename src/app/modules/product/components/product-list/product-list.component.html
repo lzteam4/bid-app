@@ -2,11 +2,50 @@
     <p-header>
         <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
             (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
     </p-header>
     <ng-template let-product pTemplate="listItem">
         <div>
-            {{product.Id}}
+            <div class='table-responsive'>
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>
+                                
+                            </th>
+                            <th>Product</th>
+                            <th>Code</th>
+                            <th>Available</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>5 Star Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img  [src]='product.ImageUrl' [title]='product.Name' class="imageClass">
+                            </td>
+                            <td>
+                                <a [routerLink]="['/products/detail', product.Id]">
+                                    {{ product.Name }}
+                                </a>
+                            </td>
+                            <td>{{ product.Code | lowercase | convertToSpaces: '-' }}</td>
+                            <td>{{ product.ReleaseTimestamp | date}}</td>
+                            <td>{{product.Category}}</td>
+                            <td>{{ product.Price | currency:'USD':true:'1.2-2'}}</td>
+                            <td>
+                                <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
+                                </pm-star>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" [routerLink]="['/products/edit', product.Id]">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </ng-template>
     <ng-template let-product pTemplate="gridItem">
