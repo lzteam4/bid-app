@@ -7,7 +7,8 @@ import { RegisterComponent } from '../app/modules/auth/register/register.compone
 import { AuthGuard } from '../app/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
@@ -21,8 +22,9 @@ const routes: Routes = [
    canActivate: [AuthGuard]
   },
 
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 // const routes: Routes = [

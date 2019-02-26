@@ -1,9 +1,26 @@
-﻿<h1>Hi {{currentUser.Name}}!</h1>
-<p>You're logged in with Angular 7!!</p>
-<h3>All registered users:</h3>
+﻿<div class="panel panel-primary">
+        <div class="panel-heading">
+            {{pageTitle}}
+    
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <img src="./assets/images/logo1.jpg" class="img-responsive center-block" style="max-height:300px;padding-bottom:50px" />
+            </div>
+            <div class="row">
+                    
+                    <h1>Hi {{currentUser.Name}}!</h1>
+                    <p>You're logged in with Angular 7!!</p>
+    
+            </div>       
+        </div>
+    </div>
+
+
+<!-- <h3>All registered users:</h3>
 <ul>
     <li *ngFor="let user of users">
         {{user.username}} ({{user.Name}})
         - <a (click)="deleteUser(user.Id)" class="text-danger">Delete</a>
     </li>
-</ul>
+</ul> -->

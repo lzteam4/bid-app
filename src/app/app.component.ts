@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseCloudMessagingService, AuthenticationService } from './services';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   pageTitle = 'XP Bid Dash';
+  loginLabel = 'Login';
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -23,8 +24,25 @@ export class AppComponent {
     }
   }
 
+  ngOnInit()
+  {
+    if (this.authenticationService.currentUserValue) {
+      // authorised so return true
+      this.loginLabel === 'Logout'
+    }
+    else {
+      this.loginLabel === 'Login'
+    }
+  }
+
   logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
-}
+  
+    if (this.authenticationService.currentUserValue) {
+      // authorised so return true
+      this.loginLabel === 'Logout'
+    }
+    else {
+      this.loginLabel === 'Login'
+    }
+  }
 }
