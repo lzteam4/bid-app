@@ -73,10 +73,9 @@ export class FirebaseCloudMessagingService {
     }, this.httpOptions).pipe();
   }
 
-
   updateToken(token) {
-    this.userService.updateToken(token).subscribe(userId => {
-      console.log(userId);
+    this.userService.updateTokenForCurrentUser(token).subscribe(user => {
+      console.log(JSON.stringify(user));
     });
     console.log(token);
   }

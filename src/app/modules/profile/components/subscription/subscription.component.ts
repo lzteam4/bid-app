@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProductCategory } from 'src/app/entities';
-import { FirebaseCloudMessagingService, CategoryService, UserService } from 'src/app/services';
+import { FirebaseCloudMessagingService, CategoryService, AuthenticationService } from 'src/app/services';
 
 @Component({
   selector: 'app-subscription',
@@ -12,23 +12,24 @@ export class SubscriptionComponent implements OnInit {
   errorMessage: string;
   token = null;
   constructor(private firebaseCloudMessagingService: FirebaseCloudMessagingService,
-    private userService: UserService,
-     private categoryService: CategoryService) { }
+    private authenticationService: AuthenticationService,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
-    let user = this.userService.getCurrentUser();
-    this.token = user.FcmToken;
-    this.categoryService.getCategories().subscribe(productCategories => {
-      this.firebaseCloudMessagingService.getAppInstanceTopics(this.token).subscribe(pcs => {
-        productCategories.map((productCategory) => {
-          productCategory.isSubscribed = pcs.includes(productCategory.productCatName);
-        },
-          error => this.errorMessage = <any>error)
-        this.productCategories = productCategories;
-      });
-    },
-      error => this.errorMessage = <any>error
-    );
+    this.authenticationService.currentUser.subscribe(user => {
+      this.token = user.FcmToken;
+      this.categoryService.getCategories().subscribe(productCategories => {
+        this.firebaseCloudMessagingService.getAppInstanceTopics(this.token).subscribe(pcs => {
+          productCategories.map((productCategory) => {
+            productCategory.isSubscribed = pcs.includes(productCategory.productCatName);
+          },
+            error => this.errorMessage = <any>error)
+          this.productCategories = productCategories;
+        });
+      },
+        error => this.errorMessage = <any>error
+      );
+    });
   }
 
   checkboxChanged(e, productCategory) {

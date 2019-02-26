@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FirebaseCloudMessagingService } from './services';
-import { UserService } from './services/user.service';
-import {MessageService} from 'primeng/api';
+import { FirebaseCloudMessagingService, AuthenticationService } from './services';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,17 +8,15 @@ import {MessageService} from 'primeng/api';
 })
 export class AppComponent {
   pageTitle = 'XP Bid Dash';
-  constructor(private userService: UserService, 
+  constructor(private authenticationService: AuthenticationService,
     private firebaseCloudMessagingService: FirebaseCloudMessagingService,
     private messageService: MessageService) {
-    userService.getUserByUP("Nikhil", "test123").subscribe(
-      user => {
-        this.userService.setCurrentUser(user);
-        this.firebaseCloudMessagingService.requestPermission();
-        this.firebaseCloudMessagingService.receiveMessage().subscribe(payload => {
-          this.messageService.add({severity:'success', summary: payload["notification"]["title"], detail: payload["notification"]["body"]});
-        });
-      }
-    );
+
+    if (this.authenticationService.currentUserValue) {
+      this.firebaseCloudMessagingService.requestPermission();
+      this.firebaseCloudMessagingService.receiveMessage().subscribe(payload => {
+        this.messageService.add({ severity: 'success', summary: payload["notification"]["title"], detail: payload["notification"]["body"] });
+      });
+    }
   }
 }

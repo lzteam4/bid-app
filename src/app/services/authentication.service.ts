@@ -21,11 +21,16 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${ApiConfig.baseUrl}/users/authenticate`, { username, password })
+    public set currentUserValue(user: IUser) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+    }
+
+    login(userName: string, password: string) {
+        return this.http.get<IUser>(`${ApiConfig.baseUrl}/${ApiConfig.user}/username/${userName}/password/${password}`)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
