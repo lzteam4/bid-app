@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseCloudMessagingService, AuthenticationService } from './services';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,9 @@ import { MessageService } from 'primeng/api';
 })
 export class AppComponent {
   pageTitle = 'XP Bid Dash';
-  constructor(private authenticationService: AuthenticationService,
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
     private firebaseCloudMessagingService: FirebaseCloudMessagingService,
     private messageService: MessageService) {
 
@@ -19,4 +22,9 @@ export class AppComponent {
       });
     }
   }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+}
 }
