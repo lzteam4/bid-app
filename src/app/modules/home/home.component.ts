@@ -7,6 +7,7 @@ import { UserService, AuthenticationService } from '../../services';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit, OnDestroy {
+    pageTitle = "Home";
     currentUser: IUser;
     currentUserSubscription: Subscription;
     users: IUser[] = [];
@@ -29,7 +30,3 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
 }
-
-// export class HomeComponent {
-//     public pageTitle: string = 'XP Bidding';
-// }

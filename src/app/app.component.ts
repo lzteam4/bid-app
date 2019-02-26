@@ -28,10 +28,10 @@ export class AppComponent implements OnInit {
   {
     if (this.authenticationService.currentUserValue) {
       // authorised so return true
-      this.loginLabel === 'Logout'
+      this.loginLabel === 'Logout';
     }
     else {
-      this.loginLabel === 'Login'
+      this.loginLabel === 'Login';
     }
   }
 
@@ -39,10 +39,10 @@ export class AppComponent implements OnInit {
   
     if (this.authenticationService.currentUserValue) {
       // authorised so return true
-      this.loginLabel === 'Logout'
+      this.loginLabel === 'Logout';
     }
     else {
-      this.loginLabel === 'Login'
+      this.loginLabel === 'Login';
     }
   }
 }
