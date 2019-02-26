@@ -253,77 +253,74 @@
                     <div class="product-grid">
                         <div class="product-image">
                             <a [routerLink]="['/products/detail', product.Id]">
-                                <img src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg"
-                                    [title]='product.Name'>
+                                <img [src]='product.ImageUrl' [title]='product.Name'>
                             </a>
 
                         </div>
-                        <ul class="rating">
-                            <li>
-                                <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
-                                </pm-star>
-                            </li>
-
-                        </ul>
+                        <div>
+                            <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
+                            </pm-star>
+                        </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ product.Name }}</a></h3>
                             <div class="price">
                                 <span>{{ product.Price | currency:'USD':true:'1.2-2'}}</span>
                             </div>
                             <a class="btn btn-primary" [routerLink]="['/products/edit', product.Id]">Edit</a>
+                            <a class="btn btn-primary" [routerLink]="" style="margin-left:10px">Bid Now</a>
                         </div>
                     </div>
                 </div>
 
             </ng-template>
 
-             <!-- Template2 -->
-             <ng-template let-product pTemplate="listItem">
-                    <div class='table-responsive'>
-    
-                        <table class='table'>
-                            <thead>
-                                <tr>
-                                    <th>
-    
-                                    </th>
-                                    <th>Product</th>
-                                    <th>Code</th>
-                                    <th>Available</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
-                                    <th>5 Star Rating</th>
-                                </tr>
-                            </thead>
-    
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <img [src]='product.ImageUrl' [title]='product.Name' class="imageClass">
-                                    </td>
-                                    <td>
-                                        <a [routerLink]="['/products/detail', product.Id]">
-                                            {{ product.Name }}
-                                        </a>
-                                    </td>
-                                    <td>{{ product.Code | lowercase | convertToSpaces: '-' }}</td>
-                                    <td>{{ product.ReleaseTimestamp | date}}</td>
-                                    <td>{{product.Category}}</td>
-                                    <td>{{ product.Price | currency:'USD':true:'1.2-2'}}</td>
-                                    <td>
-                                        <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
-                                        </pm-star>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary" [routerLink]="['/products/edit', product.Id]">Edit</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-    
-                        </table>
-    
-                    </div>
-                </ng-template>
+            <!-- Template2 -->
+            <ng-template let-product pTemplate="listItem">
+                <div class='table-responsive'>
+
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>
+
+                                </th>
+                                <th>Product</th>
+                                <th>Code</th>
+                                <th>Available</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>5 Star Rating</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img [src]='product.ImageUrl' [title]='product.Name' class="imageClass">
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/products/detail', product.Id]">
+                                        {{ product.Name }}
+                                    </a>
+                                </td>
+                                <td>{{ product.Code | lowercase | convertToSpaces: '-' }}</td>
+                                <td>{{ product.ReleaseTimestamp | date}}</td>
+                                <td>{{product.Category}}</td>
+                                <td>{{ product.Price | currency:'USD':true:'1.2-2'}}</td>
+                                <td>
+                                    <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
+                                    </pm-star>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" [routerLink]="['/products/edit', product.Id]">Edit</a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </ng-template>
         </p-dataView>
     </div>
 </div>
