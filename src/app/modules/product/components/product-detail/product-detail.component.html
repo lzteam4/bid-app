@@ -1,10 +1,10 @@
 <div class='panel panel-primary' *ngIf='product'>
-  <div class='panel-heading'>
-      {{pageTitle + ': ' + product.Name}}
-  </div>
+    <div class='panel-heading'>
+        {{pageTitle + ': ' + product.Name}}
+    </div>
 
-  <div class='panel-body'>
-      <div class='row'>
+    <div class='panel-body'>
+        <!-- <div class='row'>
           <div class='col-md-6'>
               <div class='row'>
                   <div class='col-md-3'>Name:</div>
@@ -20,7 +20,7 @@
               </div>
               <div class='row'>
                   <div class='col-md-3'>Availability:</div>
-                  <div class='col-md-6'>{{product.ReleaseTimestamp}}</div>
+                  <div class='col-md-6'>{{product.ReleaseTimestamp | date}}</div>
               </div>
               <div class='row'>
                   <div class='col-md-3'>Price:</div>
@@ -38,15 +38,46 @@
           <div class='col-md-6'>
               <img class='center-block img-responsive' [style.width.px]='200' [style.margin.px]='2' [src]='product.ImageUrl' [title]='product.Name'>
           </div>
-      </div>
-  </div>
+      </div> -->
 
-  <div class='panel-footer'>
-      <a class='btn btn-default' (click)='onBack()' style='width:80px'>
-          <i class='glyphicon glyphicon-chevron-left'></i> Back
-      </a>
-      <a class='btn btn-default' style='width:80px; margin-left:10px' [routerLink]="['/edit', product.Id]">
-          <i class='glyphicon glyphicon-edit'></i> Edit
-      </a>
-  </div>
+        <div>
+            <h2>{{product.Name}}</h2>
+            <div class="col-md-4">
+                <img id="example" src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" alt=" "
+                    class="img-responsive" />
+            </div>
+            <div class="col-md-8 agileinfo_single_right">
+                <div class="rating">
+                    <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
+                    </pm-star>
+                </div>
+                <div class="w3agile_description">
+                    <h4>Description :</h4>
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                        officia deserunt mollit anim id est laborum.Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur.</p>
+                </div>
+                <div class="price">
+                    <div>
+                        <h4><span>{{product.Price}}</span></h4>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" [routerLink]="" style="margin-left:10px">Bid Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+
+    <div class='panel-footer'>
+        <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+            <i class='glyphicon glyphicon-chevron-left'></i> Back
+        </a>
+        <a class='btn btn-default' style='width:80px; margin-left:10px' [routerLink]="['/edit', product.Id]">
+            <i class='glyphicon glyphicon-edit'></i> Edit
+        </a>
+    </div>
 </div>
