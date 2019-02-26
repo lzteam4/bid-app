@@ -253,19 +253,20 @@
                     <div class="product-grid">
                         <div class="product-image">
                             <a [routerLink]="['/products/detail', product.Id]">
-                                <img [src]='product.ImageUrl' [title]='product.Name'>
+                                <img src='https://homepages.cae.wisc.edu/~ece533/images/airplane.png' [title]='product.Name'>
                             </a>
 
                         </div>
-                        <div>
-                            <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
-                            </pm-star>
-                        </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ product.Name }}</a></h3>
+                            
                             <div class="price">
                                 <span>{{ product.Price | currency:'USD':true:'1.2-2'}}</span>
                             </div>
+                            <div class="rating">
+                                    <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
+                                    </pm-star>
+                                </div>
                             <a class="btn btn-primary" [routerLink]="['/products/edit', product.Id]">Edit</a>
                             <a class="btn btn-primary" [routerLink]="" style="margin-left:10px">Bid Now</a>
                         </div>

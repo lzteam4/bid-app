@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .subscribe(
                 user => {
