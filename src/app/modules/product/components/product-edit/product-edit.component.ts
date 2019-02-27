@@ -54,6 +54,9 @@ export class ProductEditComponent implements OnInit, OnDestroy, AfterViewInit {
           Category: {
             required: 'Product category is required.'
         },
+        Price: {
+            required: 'Product price is required.'
+        },
           StarRating: {
               range: 'Rate the product between 1 (lowest) and 5 (highest).'
           },
@@ -74,6 +77,7 @@ export class ProductEditComponent implements OnInit, OnDestroy, AfterViewInit {
           Validators.minLength(3),
           Validators.maxLength(50)]],
           Code: ['', Validators.required],
+          Price: ['', Validators.required],
           Category: ['', Validators.required],
           StarRating: ['', [NumberValidators.range(1, 5)]],
           ImageUrl: ['', Validators.required],
@@ -147,6 +151,7 @@ this.productCategories = productCategories;
           this.productForm.patchValue({
               Name: this.product.Name,
               Code: this.product.Code,
+              Price: this.product.Price,
               Category: this.product.Category,
               StarRating: this.product.StarRating,
               Description: this.product.Description,

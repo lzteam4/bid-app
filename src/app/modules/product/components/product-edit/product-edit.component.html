@@ -41,8 +41,18 @@
                     </span>
                 </div>
 
-            </div>
+            </div>            
+            <!-- Product price -->
+            <div class="form-group" [ngClass]="{'has-error': displayMessage?.Price}">
+                <label class="col-md-2 control-label" for="PriceId">Price</label>
 
+                <div class="col-md-8">
+                    <input class="form-control" id="PriceId" type="text" placeholder="Price (required)" formControlName="Price" />
+                    <span class="help-block" *ngIf="displayMessage?.Price">
+                        {{displayMessage?.Price}}
+                    </span>
+                </div>
+            </div>
 
               <!-- Star Rating -->
               <div class="form-group" [ngClass]="{'has-error': displayMessage?.StarRating}">
