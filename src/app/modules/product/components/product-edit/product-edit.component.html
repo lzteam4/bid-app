@@ -32,26 +32,42 @@
                 <label class="col-md-2 control-label" for="CategoryId">Product Category</label>
 
                 <div class="col-md-8">
-                    <input class="form-control" id="CategoryId" type="text" placeholder="Category (required)" formControlName="Category" />
+                    <!-- <input class="form-control" id="CategoryId" type="text" placeholder="Category (required)" formControlName="Category" /> -->
+                     <select class='form-control' formControlName="Category" required>
+                    <option class='option' *ngFor='let category of productCategories' [value]="category.productCatName">{{category.productCatName}}</option>
+                </select>
                     <span class="help-block" *ngIf="displayMessage?.Category">
                         {{displayMessage?.Category}}
                     </span>
                 </div>
+
             </div>
 
 
               <!-- Star Rating -->
               <div class="form-group" [ngClass]="{'has-error': displayMessage?.StarRating}">
-                  <label class="col-md-2 control-label" for="StarRatingId">Star Rating (1-5)</label>
+                <label class="col-md-2 control-label" for="StarRatingId">Star Rating (1-5)</label>
 
-                  <div class="col-md-8">
-                      <input class="form-control" id="StarRatingId" type="number" placeholder="Rating" formControlName="StarRating" />
-                      <span class="help-block" *ngIf="displayMessage?.StarRating">
-                          {{displayMessage?.StarRating}}
-                      </span>
-                  </div>
-              </div>
+                <div class="col-md-8">
+                    <input class="form-control" id="StarRatingId" type="number" placeholder="Rating" formControlName="StarRating" />
+                    <span class="help-block" *ngIf="displayMessage?.StarRating">
+                        {{displayMessage?.StarRating}}
+                    </span>
+                </div>
+            </div>
 
+               <!-- Product Image -->
+               <div class="form-group" [ngClass]="{'has-error': displayMessage?.ImageUrl}">
+                <label class="col-md-2 control-label" for="ImageUrl">Product Image</label>
+
+                <div class="col-md-8">
+                    <input class="form-control" id="ImageUrl" type="text" placeholder="Add Image (required)" formControlName="ImageUrl" />
+                    <span class="help-block" *ngIf="displayMessage?.ImageUrl">
+                        {{displayMessage?.ImageUrl}}
+                    </span>
+                </div>
+            </div>
+              
               <!--Tags-->
               <div formArrayName="Tags">
                   <div class="row">
@@ -97,11 +113,11 @@
                           </a>
                       </span>
                       <!-- Delete Button -->
-                      <span>
+                      <!-- <span>
                           <a class="btn btn-default" style="width:80px" (click)="deleteProduct()">
                               Delete
                           </a>
-                      </span>
+                      </span> -->
                   </div>
               </div>
           </fieldset>
