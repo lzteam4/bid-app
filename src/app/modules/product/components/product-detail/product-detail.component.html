@@ -43,24 +43,22 @@
         <div>
             <h2>{{product.Name}}</h2>
             <div class="col-md-4">
-                <img id="example" src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" alt=" "
+                <img id="example" [src]="product.ImageUrl" alt=" "
                     class="img-responsive" />
             </div>
             <div class="col-md-8 agileinfo_single_right">
                 <div class="rating">
+                    <span class="w3agile_description"><h4>Rating:</h4></span>
                     <pm-star [rating]='product.StarRating' (ratingClicked)='onRatingClicked($event)'>
                     </pm-star>
                 </div>
                 <div class="w3agile_description">
                     <h4>Description :</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                        officia deserunt mollit anim id est laborum.Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur.</p>
+                    <p>{{product.Description}}}</p>
                 </div>
                 <div class="price">
                     <div>
-                        <h4><span>{{product.Price}}</span></h4>
+                        <h4><span>{{ product.Price | currency:'USD':true:'1.2-2'}}</span></h4>
                     </div>
                     <div>
                         <a class="btn btn-primary" [routerLink]="" style="margin-left:10px">Bid Now</a>

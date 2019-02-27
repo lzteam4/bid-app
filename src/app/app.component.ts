@@ -19,13 +19,22 @@ export class AppComponent implements OnInit {
     if (this.authenticationService.currentUserValue) {
       this.firebaseCloudMessagingService.requestPermission();
       this.firebaseCloudMessagingService.receiveMessage().subscribe(payload => {
-        this.messageService.add({ severity: 'success', summary: payload["notification"]["title"], detail: payload["notification"]["body"] });
+        this.messageService.add({
+          severity: 'success',
+          summary: payload["notification"]["title"],
+          detail: payload["notification"]["body"],
+          data: {
+            Id: payload["data"]["Id"],
+            ImageUrl: payload["data"]["ImageUrl"],
+            Price: payload["data"]["Price"],
+            StarRating: payload["data"]["StarRating"]
+          }
+        });
       });
     }
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     if (this.authenticationService.currentUserValue) {
       // authorised so return true
       this.loginLabel === 'Logout';
@@ -36,7 +45,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-  
+
     if (this.authenticationService.currentUserValue) {
       // authorised so return true
       this.loginLabel === 'Logout';
